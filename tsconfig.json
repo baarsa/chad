@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"target": "es5",
+		"allowSyntheticDefaultImports": true,
+		"outDir": "./dist",
+		"baseUrl": "./src_server",
+		"lib": ["es2015"]
+	},
+	"include": [
+		"src_server/**/*.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}

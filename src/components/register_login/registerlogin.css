@@ -1,0 +1,7 @@
+.item {
+	transition: height 1s linear;
+}
+
+.item_hidden {
+	display: none;
+}
