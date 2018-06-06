@@ -8,6 +8,7 @@ import * as path from 'path'
 import login from './xhr/login/login'
 import register from './xhr/register/register'
 import initialinfo from './xhr/initial-info/initialinfo'
+import isauth from './xhr/isauth/isauth'
 
 class App {
 	private server: Server;
@@ -33,6 +34,12 @@ class App {
 			console.log('user connected');
 			socket.on('chat message', msg => {
 				console.log(msg);
+				socket.json.send({
+					message: msg
+				});
+				socket.broadcast.json.send({
+					message: msg
+				});
 			});
 		});
 	}
@@ -58,6 +65,7 @@ class App {
 		this.express.post("/login", login);		
 		this.express.post("/register", register);
 		this.express.post("/initial-info", initialinfo);		
+		this.express.post("/isauth", isauth);	
 	}
 }
 

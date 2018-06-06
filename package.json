@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serv": "ts-node src_server/server.ts",
-    "watch": "webpack --watch --progress"
+    "watch": "webpack --mode development --watch --progress"
   },
   "author": "",
   "license": "ISC",

@@ -15,6 +15,18 @@ class App extends React.Component<{}, State> {
 		};
 	}
 
+	componentDidMount () {
+		fetch("/isauth", {
+			method: 'post',
+			credentials: 'include'
+		})
+		.then(res => {
+			if (res.status === 200) {
+					this._login();
+			}
+		});
+	}
+
 	render () {
 		let { authorized } = this.state;
 		return (<div>

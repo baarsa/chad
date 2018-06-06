@@ -3,7 +3,7 @@ import './Input.css'
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
 	title: string;
-	onValueChange(value: string): void;
+	onValueChange?(value: string): void;	
 }
 
 interface State {
@@ -15,16 +15,18 @@ class Input extends React.Component<Props, State> {
 		value: ''
 	}
 
-	handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-		const value = event.currentTarget.value;
-		const {onValueChange} = this.props;
+	handleChange = (event: any) => {		
+		const value = event.currentTarget.value;		
 		this.setState(() => ({value}));
-		onValueChange(value);
+		if (this.props.onValueChange) {
+			const {onValueChange} = this.props;
+			onValueChange(value);			
+		}		
 	}
 
 	render() {
 		const { value } = this.state;
-		const { title, ...inputProps } = this.props;
+		const { title, onValueChange, ...inputProps } = this.props;
 
 		return (<div>
 			<div className="all">{title}</div>

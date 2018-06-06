@@ -7,7 +7,7 @@
 		"allowSyntheticDefaultImports": true,
 		"outDir": "./dist",
 		"baseUrl": "./src_server",
-		"lib": ["es2015"]
+		"lib": ["es2015", "dom"]
 	},
 	"include": [
 		"src_server/**/*.ts"
