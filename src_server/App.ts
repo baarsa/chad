@@ -14,6 +14,7 @@ class App {
 	private server: Server;
 	private express: express.Application;
 	private io: SocketIO.Server;
+	private sessionMiddleware: express.RequestHandler;
 
 	constructor() {
 		this.express = express();
@@ -30,15 +31,20 @@ class App {
 
 	private setSocket(): void {		
 		this.io = socketIo(this.server);
+		this.io.use((socket, next) => {
+			this.sessionMiddleware(socket.request, socket.request.res, next);
+		});
 		this.io.on('connection', (socket) => {
 			console.log('user connected');
 			socket.on('chat message', msg => {
 				console.log(msg);
 				socket.json.send({
-					message: msg
+					text: msg,
+					user_id: socket.request.session.user_id
 				});
 				socket.broadcast.json.send({
-					message: msg
+					text: msg,
+					user_id: socket.request.session.user_id
 				});
 			});
 		});
@@ -47,13 +53,14 @@ class App {
 	private setMiddleware(): void {
 		this.express.use(bodyParser.json());
 		this.express.use(bodyParser.urlencoded({extended: true}));
-		this.express.use(session({
+		this.sessionMiddleware = session({
 			secret: 'sekret',
 			cookie: {
 				secure: false,
 				httpOnly: false
 			}
-		}));
+		});
+		this.express.use(this.sessionMiddleware);
 	}
 
 	private setRoutes(): void {

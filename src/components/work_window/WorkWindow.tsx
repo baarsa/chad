@@ -1,15 +1,16 @@
 import * as React from 'react'
+import {Message} from './messages/Messages' 
 import Messages from './messages/Messages'
 import MessageInput from './message_input/MessageInput'
 import * as io from 'socket.io-client'
 
 interface Props {
-
+ 
 }
 
 interface State {
 	username: string | undefined;
-	messages: string[]
+	messages: Message[]
 }
 
 class WorkWindow extends React.Component<{}, State> {
@@ -20,15 +21,14 @@ class WorkWindow extends React.Component<{}, State> {
 		super(props);
 		this.state = {
 			username: undefined,
-			messages: [
-				 "message one",
-				"message two"
+			messages: [				 
+				{text: "message two", user_id: 999}
 			]
 		};
 		this.socket = io();
 		this.socket.on('message', (msg: any) => {
 			this.setState({
-				messages: [...this.state.messages, msg.message]
+				messages: [...this.state.messages, msg]
 			});
 		});
 	}
