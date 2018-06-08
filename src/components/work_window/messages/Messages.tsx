@@ -2,7 +2,9 @@ import * as React from 'react'
 
 export interface Message {
 	text: string,
-	user_id: number
+	user_id: number,
+	user_name: string,
+	date: Date
 }
 
 interface Props {
@@ -11,7 +13,7 @@ interface Props {
 
 const Messages: React.SFC<Props> = ({ messages }) => (
 	<div>
-	{messages.map((message: any) => (<div>"{message.text}"" BY #{message.user_id}</div>))}
+	{messages.map((message: any) => (<div>"{message.text}"" BY #{message.user_name} AT {message.date.toString()}</div>))}
 	</div>
 )
 

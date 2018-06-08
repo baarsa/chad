@@ -22,7 +22,7 @@ class WorkWindow extends React.Component<{}, State> {
 		this.state = {
 			username: undefined,
 			messages: [				 
-				{text: "message two", user_id: 999}
+				{text: "message two", user_id: 999, user_name: "no user", date: new Date}
 			]
 		};
 		this.socket = io();

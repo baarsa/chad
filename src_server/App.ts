@@ -1,9 +1,9 @@
 import * as express from 'express'
 import {Request, Response} from 'express'
-import { createServer, Server } from 'http';
+import { createServer, Server } from 'http'
 import * as bodyParser from 'body-parser'
 import * as session from 'express-session'
-import * as socketIo from 'socket.io'
+import ChatServer from './ChatServer'
 import * as path from 'path'
 import login from './xhr/login/login'
 import register from './xhr/register/register'
@@ -12,8 +12,8 @@ import isauth from './xhr/isauth/isauth'
 
 class App {
 	private server: Server;
-	private express: express.Application;
-	private io: SocketIO.Server;
+	private express: express.Application;	
+	private chatServer: ChatServer;
 	private sessionMiddleware: express.RequestHandler;
 
 	constructor() {
@@ -21,7 +21,7 @@ class App {
 		this.server = createServer(this.express);
 
 		this.setMiddleware();
-		this.setSocket();
+		this.setChatServer();
 		this.setRoutes();
 	}
 
@@ -29,25 +29,8 @@ class App {
 		this.server.listen(port);
 	}
 
-	private setSocket(): void {		
-		this.io = socketIo(this.server);
-		this.io.use((socket, next) => {
-			this.sessionMiddleware(socket.request, socket.request.res, next);
-		});
-		this.io.on('connection', (socket) => {
-			console.log('user connected');
-			socket.on('chat message', msg => {
-				console.log(msg);
-				socket.json.send({
-					text: msg,
-					user_id: socket.request.session.user_id
-				});
-				socket.broadcast.json.send({
-					text: msg,
-					user_id: socket.request.session.user_id
-				});
-			});
-		});
+	private setChatServer(): void {		
+		this.chatServer = new ChatServer(this.server, this.sessionMiddleware);		
 	}
 
 	private setMiddleware(): void {
