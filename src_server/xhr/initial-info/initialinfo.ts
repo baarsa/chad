@@ -7,7 +7,11 @@ const initialinfo = async (req: express.Request, res: express.Response) => {
 		return;
 	}
 	const [user] = await knex('users').where({id: req.session.user_id});
-	res.send(JSON.stringify({username: user.nickname}));
+	const messages = await knex.select().table('messages');
+	res.send(JSON.stringify({
+		username: user.nickname,
+		messages
+	}));
 }
 
 export default initialinfo;

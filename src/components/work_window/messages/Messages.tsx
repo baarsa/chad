@@ -2,7 +2,7 @@ import * as React from 'react'
 
 export interface Message {
 	text: string,
-	user_id: number,
+	id_user: number,
 	user_name: string,
 	date: Date
 }

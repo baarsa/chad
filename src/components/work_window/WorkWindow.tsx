@@ -22,7 +22,7 @@ class WorkWindow extends React.Component<{}, State> {
 		this.state = {
 			username: undefined,
 			messages: [				 
-				{text: "message two", user_id: 999, user_name: "no user", date: new Date}
+				{text: "message two", id_user: 999, user_name: "no user", date: new Date}
 			]
 		};
 		this.socket = io();
@@ -45,7 +45,8 @@ class WorkWindow extends React.Component<{}, State> {
 		.then(res => res.json())
 		.then(res => {
 			this.setState({
-				username: res.username
+				username: res.username,
+				messages: res.messages
 			});
 		});
 	}
