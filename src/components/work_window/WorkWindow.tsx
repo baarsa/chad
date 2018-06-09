@@ -21,9 +21,7 @@ class WorkWindow extends React.Component<{}, State> {
 		super(props);
 		this.state = {
 			username: undefined,
-			messages: [				 
-				{text: "message two", id_user: 999, user_name: "no user", date: new Date}
-			]
+			messages: []
 		};
 		this.socket = io();
 		this.socket.on('message', (msg: any) => {
@@ -59,8 +57,7 @@ class WorkWindow extends React.Component<{}, State> {
 		return (<div>
 			Work Window. {this.state.username ? `Welcome, ${this.state.username}!` : ""}
 			<Messages messages = {this.state.messages} />
-			<MessageInput onSubmit={this.sendMessage} />
-			<button onClick={() => {this.sendMessage("aaa");}}>aa</button>
+			<MessageInput onSubmit={this.sendMessage} />			
 		</div>)
 	}
 }

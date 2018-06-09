@@ -15,6 +15,9 @@ export default class MessageInput extends React.Component<Props, State> {
 	onSubmit = (event: any) => {
 		event.preventDefault();
 		this.props.onSubmit(this.state.message);
+		this.setState({
+			message: ""
+		});
 	}
 	handleChange = (event: any) => {
 		this.setState({

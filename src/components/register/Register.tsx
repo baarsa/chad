@@ -1,11 +1,15 @@
 import * as React from 'react'
 import Input from '../input/Input'
 
+interface Props {
+	onRegister(): void;
+}
+
 interface State {
 	email: string;
 }
 
-class Register extends React.Component<{}, State> {
+class Register extends React.Component<Props, State> {
 	
 	handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -20,6 +24,7 @@ class Register extends React.Component<{}, State> {
 			})
 		})
 		.then(r => {
+			this.props.onRegister();
 			console.log(r);
 		})
 	}

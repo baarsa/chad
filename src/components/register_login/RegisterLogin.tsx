@@ -27,7 +27,7 @@ class RegisterLogin extends React.Component<Props, State> {
 	render() {		
 		return (<div>
 			<div className={this._getRegisterBlockClassname()}>
-				<Register />
+				<Register onRegister={() => {this._goToLogin()}} />
 				<div onClick={() => {this._goToLogin()}}>Перейти к авторизации</div>
 			</div>
 			<div className={this._getLoginBlockClassname()}>
