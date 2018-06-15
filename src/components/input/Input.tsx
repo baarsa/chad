@@ -16,7 +16,7 @@ class Input extends React.Component<Props, State> {
 	}
 
 	handleChange = (event: any) => {		
-		const value = event.currentTarget.value;		
+		const value = event.target.value;		
 		this.setState(() => ({value}));
 		if (this.props.onValueChange) {
 			const {onValueChange} = this.props;

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {InjectedProps} from './withCount.tsx'
+import {InjectedProps} from './withCount'
 
 interface OriginProps {
 	title: string;

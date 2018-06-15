@@ -43,7 +43,7 @@ class Login extends React.Component<Props, State> {
 			<input type="submit" />
 		</form>
 		)
-		}
 	}
+}
 
 export default Login;
