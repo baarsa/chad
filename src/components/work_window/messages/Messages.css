@@ -1,0 +1,9 @@
+.root {
+	height: 320px;
+	overflow-y: scroll;;
+}
+
+.author {
+	color: #ffffff;
+	background-color: #cc3300;
+}

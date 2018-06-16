@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as styles from './Messages.css'
 
 export interface Message {
 	text: string,
@@ -12,8 +13,11 @@ interface Props {
 }
 
 const Messages: React.SFC<Props> = ({ messages }) => (
-	<div>
-	{messages.map((message: any) => (<div>"{message.text}"" BY #{message.user_name} AT {message.date.toString()}</div>))}
+	<div className={styles.root}>
+	{messages.map((message: Message, i: number) => (
+		<div key={i} title={"Отправлено " + message.date.toLocaleString()}>
+			<span className={styles.author}>{message.user_name}:</span> {message.text}
+		</div>))}
 	</div>
 )
 
