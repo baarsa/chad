@@ -1,0 +1,11 @@
+.root {
+	width: 500px;
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 20px;
+	margin: auto;
+}
+
+.title {
+	text-align: center;
+}

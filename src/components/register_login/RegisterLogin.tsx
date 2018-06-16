@@ -25,23 +25,23 @@ class RegisterLogin extends React.Component<Props, State> {
 		};
 	}
 	render() {		
-		return (<div>
+		return (<div className={styles.root}>
 			<div className={this._getRegisterBlockClassname()}>
-				<Register onRegister={() => {this._goToLogin()}} />
-				<div onClick={() => {this._goToLogin()}}>Перейти к авторизации</div>
+				<Register onRegister={this._goToLogin} />
+				<div className={styles.toggleLink} onClick={this._goToLogin}>Перейти к авторизации</div>
 			</div>
 			<div className={this._getLoginBlockClassname()}>
-				<Login onLogin={() => {this.props.onLogin();}} />
-				<div onClick={() => {this._goToRegistration()}}>Перейти к регистрации</div>
+				<Login onLogin={this.props.onLogin} />
+				<div className={styles.toggleLink} onClick={this._goToRegistration}>Перейти к регистрации</div>
 			</div>
 		</div>)
 	}
 
-	_goToRegistration () {
+	_goToRegistration = () => {
 		this.setState({mode: Mode.Register});
 	}
 
-	_goToLogin () {
+	_goToLogin = () => {
 		this.setState({mode: Mode.Login});
 	}
 

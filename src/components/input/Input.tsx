@@ -1,7 +1,8 @@
 import * as React from 'react'
-import './Input.css'
+import * as styles from './Input.css'
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
+	outerClass?: string;
 	title: string;
 	onValueChange?(value: string): void;	
 }
@@ -26,11 +27,11 @@ class Input extends React.Component<Props, State> {
 
 	render() {
 		const { value } = this.state;
-		const { title, onValueChange, ...inputProps } = this.props;
+		const { outerClass, title, onValueChange, ...inputProps } = this.props;
 
-		return (<div>
-			<div className="all">{title}</div>
-			<input {...inputProps} value={value} onChange={this.handleChange} />
+		return (<div className={outerClass}>
+			<div className={styles.title}>{title}</div>
+			<input className={styles.input} {...inputProps} value={value} onChange={this.handleChange} />
 		</div>)
 	}
 }

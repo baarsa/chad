@@ -1,7 +1,23 @@
 .item {
-	transition: height 1s linear;
+	width: 360px;
+	background-color: #084b8a;
+	margin: 0 auto;
+	padding: 30px;
 }
 
 .item_hidden {
 	display: none;
 }
+
+.root {	
+	padding: 10px;
+	font-family: Arial, sans-serif;
+	color: #ffffff;
+}
+
+.toggleLink {
+	margin-top: 10px;
+	cursor: pointer;
+	float: right;
+}
+

@@ -28,7 +28,7 @@ export default class MessageInput extends React.Component<Props, State> {
 		const { message } = this.state;
 		return (<form onSubmit={this.onSubmit}>
 				<input value={message} onInput={this.handleChange} />
-				<button type="submit">send</button>
+				<button type="submit">Отправить</button>
 			</form>)
 	}
 }

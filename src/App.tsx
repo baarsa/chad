@@ -1,7 +1,7 @@
 import * as React from 'react'
 import RegisterLogin from './components/register_login/RegisterLogin'
 import WorkWindow from './components/work_window/WorkWindow'
-
+import * as styles from './App.css'
 
 interface State {
 	authorized: boolean
@@ -29,12 +29,14 @@ class App extends React.Component<{}, State> {
 
 	render () {
 		let { authorized } = this.state;
-		return (<div>
-			{authorized ? <WorkWindow /> : <RegisterLogin onLogin={() => {this._login();}} />}
+		return (<div className={styles.page}>
+			<div className={styles.content}>
+			{authorized ? <WorkWindow /> : <RegisterLogin onLogin={this._login} />}
+			</div>
 		</div>);
 	}
 
-	_login () {
+	_login = () => {
 		this.setState({
 			authorized: true
 		});

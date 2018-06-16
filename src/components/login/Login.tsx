@@ -1,6 +1,7 @@
 import * as React from 'react'
-import Input from "../input/Input"
-import './Login.css'
+import Input from '../input/Input'
+import SubmitButton from '../submit_button/SubmitButton'
+import * as styles from './Login.css'
 
 interface Props {
 	onLogin(): void;
@@ -12,6 +13,13 @@ interface State {
 }
 
 class Login extends React.Component<Props, State> {
+	constructor(props: Props) {
+		super(props);
+		this.state = {
+			email: "",
+			password: ""
+		}
+	}
 
 	handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();		
@@ -36,11 +44,18 @@ class Login extends React.Component<Props, State> {
 
 	render () {
 		return (
-		<form onSubmit={this.handleLogin}>
-			<div className="logo"></div>
-			<Input title="E-mail" onValueChange={email => {this.setState({email});}} />
-			<Input title="Пароль" type="password" onValueChange={password => {this.setState({password});}} />
-			<input type="submit" />
+		<form className={styles.root} onSubmit={this.handleLogin}>
+			<h1 className={styles.title}>Авторизация</h1>
+			<Input 
+				outerClass={styles.input}
+				title="E-mail" 
+				onValueChange={email => {this.setState({email});}} />
+			<Input 
+				outerClass={styles.input}
+				title="Пароль"
+				type="password"
+				onValueChange={password => {this.setState({password});}} />
+			<SubmitButton text="Войти" />			
 		</form>
 		)
 	}

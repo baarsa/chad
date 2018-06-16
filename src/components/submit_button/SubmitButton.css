@@ -1,0 +1,14 @@
+.root {
+	display: block;
+	border: none;
+	outline: none;
+	text-align: center;
+	margin: 0 auto;
+	color: inherit;
+	background-color: #2979ff;
+	cursor: pointer;	
+}
+
+.root:hover {
+	background-color: #651fff;
+}

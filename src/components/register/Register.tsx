@@ -1,5 +1,7 @@
 import * as React from 'react'
+import * as styles from './Register.css'
 import Input from '../input/Input'
+import SubmitButton from '../submit_button/SubmitButton'
 
 interface Props {
 	onRegister(): void;
@@ -31,9 +33,9 @@ class Register extends React.Component<Props, State> {
 
 	render () {
 		return (<form onSubmit={this.handleSubmit}>
-			<h1>Registration!</h1>
-			<Input title="E-mail" onValueChange={email => {this.setState({email});}} />
-			<input type="submit" />
+			<h1 className={styles.title}>Регистрация</h1>
+			<Input outerClass={styles.input} title="E-mail" onValueChange={email => {this.setState({email});}} />
+			<SubmitButton text="Зарегистрироваться" />
 		</form>)
 	}
 }

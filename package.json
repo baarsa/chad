@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "serv": "ts-node src_server/server.ts",
-    "watch": "webpack --mode development --watch --progress"
+    "watch": "webpack --mode development --watch --progress",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",

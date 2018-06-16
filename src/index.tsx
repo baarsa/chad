@@ -5,6 +5,4 @@ import App from './App'
 
 
 
-render(<div>		
-		<App />
-	</div>, document.getElementById('root'))
+render(<App />, document.getElementById('root'));

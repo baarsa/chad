@@ -2,6 +2,7 @@ import * as React from 'react'
 import {Message} from './messages/Messages' 
 import Messages from './messages/Messages'
 import MessageInput from './message_input/MessageInput'
+import * as styles from './WorkWindow.css'
 import * as io from 'socket.io-client'
 
 interface Props {
@@ -54,8 +55,10 @@ class WorkWindow extends React.Component<{}, State> {
 	}
 
 	render () {
-		return (<div>
-			Work Window. {this.state.username ? `Welcome, ${this.state.username}!` : ""}
+		return (<div className={styles.root}>
+			<h1 className={styles.title}>
+				{this.state.username ? `Добро пожаловать, ${this.state.username}!` : ""}
+			</h1>
 			<Messages messages = {this.state.messages} />
 			<MessageInput onSubmit={this.sendMessage} />			
 		</div>)
