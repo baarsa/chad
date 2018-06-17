@@ -2,7 +2,7 @@
   "name": "chad",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "jest",
     "serv": "ts-node src_server/server.ts",
