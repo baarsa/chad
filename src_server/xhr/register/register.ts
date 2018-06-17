@@ -1,5 +1,5 @@
 import express from 'express'
-const knex = require('knex')(require('../../../knexfile.js'))
+import {DB as knex} from '../../db/DB'
 const crypto = require('crypto')
 
 import MyMailer from '../../MyMailer'

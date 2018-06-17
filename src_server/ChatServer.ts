@@ -1,7 +1,7 @@
 import * as socketIo from 'socket.io'
 import * as express from 'express'
 import { Server } from 'http'
-const knex = require('knex')(require('../knexfile.js')) //include in one place
+import {DB as knex} from './db/DB'
 
 export default class ChatServer {
 	private io: socketIo.Server;
