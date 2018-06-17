@@ -7,7 +7,8 @@
 		"allowSyntheticDefaultImports": true,
 		"outDir": "./dist",
 		"baseUrl": "./src_server",
-		"lib": ["es2015", "dom"]
+		"lib": ["es2015", "dom"],
+		"types": ["react", "jest"]
 	},
 	"include": [
 		"src_server/**/*.ts"
