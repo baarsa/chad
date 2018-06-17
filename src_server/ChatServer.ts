@@ -15,21 +15,23 @@ export default class ChatServer {
 		this.setConnection();
 	}
 
-	private setMiddleware() {
+	private setMiddleware(): void {
 		this.io.use((socket, next) => {
 			this.sessionMiddleware(socket.request, socket.request.res, next);
 		});
 	}
 
-	private setConnection() {
+	private setConnection(): void {
 		this.io.on('connection', (socket) => {
 			console.log('user connected');
 			socket.on('chat message', async msg => {
-				console.log(msg);				
+				let id_user = socket.request.session.user_id;
+				let user_name = await this.getUsername(id_user); 		
+				//todo handle unathorized					;
 				let fullMessage = {
 					text: msg,
-					id_user: socket.request.session.user_id,
-					user_name: "Anonymous",
+					id_user,
+					user_name,
 					date: new Date()
 				};
 				await this.recordMessage(fullMessage.text, fullMessage.id_user, fullMessage.date);
@@ -39,11 +41,15 @@ export default class ChatServer {
 		});
 	}
 
-	private async recordMessage(text: string, id_user: number, date: Date) {
+	private async recordMessage(text: string, id_user: number, date: Date): Promise<void> {
 		await knex('messages').insert({
 			text,
 			id_user,
 			date
 		});
+	}
+
+	private async getUsername(id_user: number): Promise<string> {		
+		return (await knex('users').where('id', id_user))[0].nickname;
 	}
 }
