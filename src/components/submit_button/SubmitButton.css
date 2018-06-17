@@ -1,9 +1,7 @@
-.root {
-	display: block;
+.root {	
 	border: none;
 	outline: none;
-	text-align: center;
-	margin: 0 auto;
+	text-align: center;	
 	color: inherit;
 	background-color: #2979ff;
 	cursor: pointer;	

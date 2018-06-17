@@ -15,7 +15,7 @@ class App extends React.Component<{}, State> {
 		};
 	}
 
-	componentDidMount () {
+	componentWillMount () {
 		fetch("/isauth", {
 			method: 'post',
 			credentials: 'include'

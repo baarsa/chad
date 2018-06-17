@@ -60,7 +60,7 @@ class WorkWindow extends React.Component<{}, State> {
 				{this.state.username ? `Добро пожаловать, ${this.state.username}!` : ""}
 			</h1>
 			<Messages messages = {this.state.messages} />
-			<MessageInput onSubmit={this.sendMessage} />			
+			<MessageInput outerClass={styles.input} onSubmit={this.sendMessage} />			
 		</div>)
 	}
 }
