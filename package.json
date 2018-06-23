@@ -9,7 +9,8 @@
     "serv": "ts-node src_server/server.ts",
     "watch": "webpack --mode development --watch --progress",
     "build": "webpack",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "postinstall": "npm run build-server"
   },
   "author": "",
   "license": "ISC",
