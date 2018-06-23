@@ -7,6 +7,7 @@ module.exports = {
 		main: "./src/index.tsx"
 	},
 	output: {
+		publicPath: "/public/",
 		path: path.resolve(__dirname, "public"),
 		filename: "[name]bundle.js"
 	},
@@ -44,6 +45,5 @@ module.exports = {
 	devtool: "source-map",
 	watchOptions: {
 		ignored: /node_modules/
-	},
-	publicPath: "/public/"
+	}	
 }
