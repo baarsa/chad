@@ -8,7 +8,8 @@
     "build-server": "tsc",
     "serv": "ts-node src_server/server.ts",
     "watch": "webpack --mode development --watch --progress",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "node dist/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -29,7 +29,9 @@ class App {
 	}
 
 	public listen(port:number): void {
-		this.server.listen(port);
+		this.server.listen(port, () => {
+			console.log(`listening at port ${port}`);
+		});
 	}
 
 	private setChatServer(): void {		
