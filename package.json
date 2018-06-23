@@ -10,7 +10,7 @@
     "watch": "webpack --mode development --watch --progress",
     "build": "webpack",
     "start": "node dist/server.js",
-    "postinstall": "npm run build-server"
+    "postinstall": "npm run build-server && npm run build"
   },
   "author": "",
   "license": "ISC",
