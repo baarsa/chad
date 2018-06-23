@@ -2,9 +2,10 @@ import express from 'express'
 import {DB as knex} from '../../db/DB'
 const crypto = require('crypto')
 
-const login = async (req: express.Request, res: express.Response) => {
+const login = async (req: express.Request, res: express.Response, next: Function) => {
 	const { email, password } = req.body;
-	const [user] = await knex('users').where({email});
+	try {
+	const [user] = await knex('users').where({email});	 
 	if (!user) {
 		res.sendStatus(401);
 		return;
@@ -15,6 +16,10 @@ const login = async (req: express.Request, res: express.Response) => {
 		res.sendStatus(200);
 	} else {
 		res.sendStatus(401);
+	}
+	} catch (err) {
+	 	console.error(err);
+	 	return next(err);	 	
 	}
 }
 

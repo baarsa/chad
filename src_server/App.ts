@@ -9,6 +9,7 @@ import login from './xhr/login/login'
 import register from './xhr/register/register'
 import initialinfo from './xhr/initial-info/initialinfo'
 import isauth from './xhr/isauth/isauth'
+import logger from './logger'
 
 class App {
 	private server: Server;
@@ -23,6 +24,8 @@ class App {
 		this.setMiddleware();
 		this.setChatServer();
 		this.setRoutes();
+		this.setErrorHandlers();
+		logger.info("started app");		
 	}
 
 	public listen(port:number): void {
@@ -43,7 +46,7 @@ class App {
 				httpOnly: false
 			}
 		});
-		this.express.use(this.sessionMiddleware);
+		this.express.use(this.sessionMiddleware);		
 	}
 
 	private setRoutes(): void {
@@ -56,6 +59,16 @@ class App {
 		this.express.post("/register", register);
 		this.express.post("/initial-info", initialinfo);		
 		this.express.post("/isauth", isauth);	
+		this.express.get("/err", (req, res, next) => {
+			next(new Error("myerror"));
+		});		
+	}
+
+	private setErrorHandlers(): void {
+		this.express.use((err: any, req: Request, res: Response, next: Function) => {
+			logger.error(`500 - ${err.message}`);
+			res.sendStatus(500).json(err);
+		});
 	}
 }
 
